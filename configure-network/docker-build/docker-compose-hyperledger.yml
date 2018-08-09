@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  composer-rest-server:
+    container_name: insure2go-compoer-reset-server
+    image: insure2go/compoer-reset-server:latest
+    build:
+      context: ../
+      dockerfile:  ./hyperledger/composer-rest-server/Dockerfile
+    volumes:
+      - "~/.composer:/home/composer/.composer"
+    restart: always
+    networks:
+      - insure2go-network

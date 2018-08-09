@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  mongo:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - "~/apps/database/mongo/db:/data/db"
+      - "~/apps/database/mongo/mongod.conf:/etc/mongod.conf"
+    command: ["mongod", "-f", "/etc/mongod.conf", "--auth"]
+    networks:
+      - insure2go-network
+
+  neo4j:
+    container_name: neo4j
+    image: neo4j:latest
+    ports:
+      - "7687:7687"
+      - "7373:7373"
+      - "7474:7474"
+    volumes:
+      - "~/apps/database/neo4j/db:/data"
+    restart: unless-stopped
+    networks:
+      - insure2go-network

@@ -1,0 +1,17 @@
+COMPOSER_CARD=ray@sift-network
+COMPOSER_NAMESPACES=never
+COMPOSER_AUTHENTICATION=true
+COMPOSER_MULTIUSER=false
+COMPOSER_PROVIDERS='{
+  "github": {
+    "provider": "github",
+    "module": "passport-github",
+    "clientID": "3dffd17d73a2c528f9a2",
+    "clientSecret": "4bec7690b4d9b6e0c5684be8cb52d3f642a81a9f",
+    "authPath": "/chain/auth/github",
+    "callbackURL": "https://dev.api.sift.insure/chain/auth/github/callback",
+    "callbackPath":"/chain/auth/github/callback",
+    "successRedirect": "/chain/explorer",
+    "failureRedirect": "/"
+  }
+}'

@@ -1,0 +1,1 @@
+rm -fr $HOME/.composer

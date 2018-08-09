@@ -1,0 +1,7 @@
+SIFTLEDGER_APP_PREFIX="siftledger"
+SIFTLEDGER_LOCAL_FOLDER="/media/daocha/Data/docker-images"
+SIFTLEDGER_REMOTE_FOLDER="/home/daocha/data/docker-images"
+SIFTLEDGER_REMOTE_SERVER="daocha@mini"
+SIFTLEDGER_REMOTE_SERVER_RSA_KEY="/home/daocha/.ssh/id_rsa_mini"
+SIFTLEDGER_BASE_VERSION="latest"
+SIFTLEDGER_LOG_FOLDER="/media/data/logs"

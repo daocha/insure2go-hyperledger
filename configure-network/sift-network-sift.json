@@ -1,0 +1,138 @@
+{
+    "name": "sift-network",
+    "x-type": "hlfv1",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Sift",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300",
+                    "eventHub": "300",
+                    "eventReg": "300"
+                },
+                "orderer": "300"
+            }
+        }
+    },
+    "channels": {
+        "mychannel": {
+            "orderers": [
+                "orderer.sift.insure"
+            ],
+            "peers": {
+                "peer0.sift.insure": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer1.sift.insure": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer0.aig.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                },
+                "peer1.aig.com": {
+                    "endorsingPeer": true,
+                    "chaincodeQuery": true,
+                    "eventSource": true
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Sift": {
+            "mspid": "Org1MSP",
+            "peers": [
+                "peer0.sift.insure",
+                "peer1.sift.insure"
+            ],
+            "certificateAuthorities": [
+                "ca.sift.insure"
+            ]
+        },
+        "AIG": {
+            "mspid": "Org2MSP",
+            "peers": [
+                "peer0.aig.com",
+                "peer1.aig.com"
+            ],
+            "certificateAuthorities": [
+                "ca.aig.com"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.sift.insure": {
+            "url": "grpcs://localhost:7050",
+            "grpcOptions": {
+                "ssl-target-name-override": "orderer.sift.insure"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICNjCCAdygAwIBAgIRAP+W8lM2CTKWbqyowUjCVLkwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC3NpZnQuaW5zdXJlMRowGAYDVQQDExF0bHNjYS5z\naWZ0Lmluc3VyZTAeFw0xODA4MDcyMDM3NDFaFw0yODA4MDQyMDM3NDFaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtzaWZ0Lmluc3VyZTEaMBgGA1UEAxMRdGxzY2Euc2lm\ndC5pbnN1cmUwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASEnKm+mtZTQm6iS5LT\n1xL0t7/budOTXZ30rH0fNmC7lY95vc6mUq93O/7qxVcWg9i1gBmTEWlzVdRtofTw\nDhUNo18wXTAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0lBAgwBgYEVR0lADAPBgNVHRMB\nAf8EBTADAQH/MCkGA1UdDgQiBCAijJ3eob3dGVdetCfLdiUI/dI/2olsiFxBnmhb\nbh5S/jAKBggqhkjOPQQDAgNIADBFAiEA4c6wNLZJPxZqUpE7pWl9OFielQ/qMM2f\njt/CL/sEIccCIAIcCJe8rBrAMzdjZ8KzxG2lcgbbXaD5Qqbyowi+/RnK\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "peers": {
+        "peer0.sift.insure": {
+            "url": "grpcs://localhost:7051",
+            "eventUrl": "grpc://localhost:7053",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.sift.insure"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICNTCCAdygAwIBAgIRALxwI5jMEnrtVBhalon6SccwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC3NpZnQuaW5zdXJlMRowGAYDVQQDExF0bHNjYS5z\naWZ0Lmluc3VyZTAeFw0xODA4MDcyMDM3NDFaFw0yODA4MDQyMDM3NDFaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtzaWZ0Lmluc3VyZTEaMBgGA1UEAxMRdGxzY2Euc2lm\ndC5pbnN1cmUwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASIpD0xAPvfU92I/zI/\nbmRLVYTQtVJqzIzI2t2vtaHL5oTLy7apae7nlFszs8/2lOQ1yh3eVIgyDliaA+AG\nin47o18wXTAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0lBAgwBgYEVR0lADAPBgNVHRMB\nAf8EBTADAQH/MCkGA1UdDgQiBCA7TP/LvUpIHk6QhdhGjBekCEmYImLK5BdiA7eK\nh99dxzAKBggqhkjOPQQDAgNHADBEAiBo7MZ/0CSPkxZvginNRr0snGeWFxrExrkO\n9F27332zswIgGAf60vTTY4UFUPA99fJmQy4Uxh0Z9SPw2dQnKfM192k=\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer1.sift.insure": {
+            "url": "grpcs://localhost:8051",
+            "eventUrl": "grpc://localhost:8053",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.sift.insure"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICNTCCAdygAwIBAgIRALxwI5jMEnrtVBhalon6SccwCgYIKoZIzj0EAwIwbDEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xFDASBgNVBAoTC3NpZnQuaW5zdXJlMRowGAYDVQQDExF0bHNjYS5z\naWZ0Lmluc3VyZTAeFw0xODA4MDcyMDM3NDFaFw0yODA4MDQyMDM3NDFaMGwxCzAJ\nBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJh\nbmNpc2NvMRQwEgYDVQQKEwtzaWZ0Lmluc3VyZTEaMBgGA1UEAxMRdGxzY2Euc2lm\ndC5pbnN1cmUwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASIpD0xAPvfU92I/zI/\nbmRLVYTQtVJqzIzI2t2vtaHL5oTLy7apae7nlFszs8/2lOQ1yh3eVIgyDliaA+AG\nin47o18wXTAOBgNVHQ8BAf8EBAMCAaYwDwYDVR0lBAgwBgYEVR0lADAPBgNVHRMB\nAf8EBTADAQH/MCkGA1UdDgQiBCA7TP/LvUpIHk6QhdhGjBekCEmYImLK5BdiA7eK\nh99dxzAKBggqhkjOPQQDAgNHADBEAiBo7MZ/0CSPkxZvginNRr0snGeWFxrExrkO\n9F27332zswIgGAf60vTTY4UFUPA99fJmQy4Uxh0Z9SPw2dQnKfM192k=\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer0.aig.com": {
+            "url": "grpcs://localhost:9051",
+            "eventUrl": "grpc://localhost:9053",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.aig.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICJDCCAcugAwIBAgIQIeAWacLjNpvm7eeASJsVDzAKBggqhkjOPQQDAjBkMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEQMA4GA1UEChMHYWlnLmNvbTEWMBQGA1UEAxMNdGxzY2EuYWlnLmNv\nbTAeFw0xODA4MDcyMDM3NDFaFw0yODA4MDQyMDM3NDFaMGQxCzAJBgNVBAYTAlVT\nMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRAw\nDgYDVQQKEwdhaWcuY29tMRYwFAYDVQQDEw10bHNjYS5haWcuY29tMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEsDmiPJUCfIA0sgujsPLF+VTXqw4gkaNWeqcO7kqS\nabwFPKcq2pOLzRsgqgnyfouxq8+Md1TvgQNLb8kCTRJIG6NfMF0wDgYDVR0PAQH/\nBAQDAgGmMA8GA1UdJQQIMAYGBFUdJQAwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4E\nIgQgpjeGCU+w71thxIUOh5c6ObuORS3Zu9+O1EL34GnW1m0wCgYIKoZIzj0EAwID\nRwAwRAIgCxFZt2jSqJhXe3t+S2OrTqlvnyoIiOpKSJPig3URUAYCIB7yvsYFU/o5\nBQ1nRcn5vSflw3RKV9xGwyOtlI4cvroU\n-----END CERTIFICATE-----\n"
+            }
+        },
+        "peer1.aig.com": {
+            "url": "grpcs://localhost:10051",
+            "eventUrl": "grpc://localhost:10053",
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.aig.com"
+            },
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICJDCCAcugAwIBAgIQIeAWacLjNpvm7eeASJsVDzAKBggqhkjOPQQDAjBkMQsw\nCQYDVQQGEwJVUzETMBEGA1UECBMKQ2FsaWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZy\nYW5jaXNjbzEQMA4GA1UEChMHYWlnLmNvbTEWMBQGA1UEAxMNdGxzY2EuYWlnLmNv\nbTAeFw0xODA4MDcyMDM3NDFaFw0yODA4MDQyMDM3NDFaMGQxCzAJBgNVBAYTAlVT\nMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4gRnJhbmNpc2NvMRAw\nDgYDVQQKEwdhaWcuY29tMRYwFAYDVQQDEw10bHNjYS5haWcuY29tMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEsDmiPJUCfIA0sgujsPLF+VTXqw4gkaNWeqcO7kqS\nabwFPKcq2pOLzRsgqgnyfouxq8+Md1TvgQNLb8kCTRJIG6NfMF0wDgYDVR0PAQH/\nBAQDAgGmMA8GA1UdJQQIMAYGBFUdJQAwDwYDVR0TAQH/BAUwAwEB/zApBgNVHQ4E\nIgQgpjeGCU+w71thxIUOh5c6ObuORS3Zu9+O1EL34GnW1m0wCgYIKoZIzj0EAwID\nRwAwRAIgCxFZt2jSqJhXe3t+S2OrTqlvnyoIiOpKSJPig3URUAYCIB7yvsYFU/o5\nBQ1nRcn5vSflw3RKV9xGwyOtlI4cvroU\n-----END CERTIFICATE-----\n"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.sift.insure": {
+            "url": "https://localhost:7054",
+            "caName": "ca-sift",
+            "httpOptions": {
+                "verify": false
+            }
+        },
+        "ca.aig.com": {
+            "url": "https://localhost:8054",
+            "caName": "ca-aig",
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

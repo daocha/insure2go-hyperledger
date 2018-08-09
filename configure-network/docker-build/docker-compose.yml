@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  nginx:
+    container_name: insure2go-nginx
+    image: insure2go/nginx:latest
+    build:
+      context: ../
+      dockerfile: ./nginx/Dockerfile
+    volumes:
+      - "~/apps/nginx/error.log:/var/log/nginx/error.log"
+      - "~/apps/nginx/access.log:/var/log/nginx/access.log"
+    depends_on:
+      - auth
+      - policy
+    networks:
+      - insure2go-network
+    restart: always
+
+  auth:
+    container_name: insure2go-auth
+    image: insure2go/auth:latest
+    build:
+      context: ../
+      dockerfile:  ./insure2go/microservice/auth/docker/Dockerfile
+    volumes:
+      - "/media/data/logs:/app/logs"
+    restart: always
+    networks:
+      - insure2go-network
+
+  policy:
+    container_name: insure2go-policy
+    image: insure2go/policy:latest
+    build:
+      context: ../
+      dockerfile:  ./insure2go/microservice/policy/docker/Dockerfile
+    volumes:
+      - "/media/data/logs:/app/logs"
+    restart: always
+    networks:
+      - insure2go-network
+
+networks:
+  insure2go-network:
+    driver: bridge

@@ -1,0 +1,8 @@
+INSURE2GO_APP_PREFIX="insure2go"
+INSURE2GO_LOCAL_FOLDER="/media/daocha/Data/docker-images"
+INSURE2GO_REMOTE_FOLDER="/home/daocha/data/docker-images"
+INSURE2GO_REMOTE_SERVER="daocha@mini"
+INSURE2GO_REMOTE_SERVER_RSA_KEY="/home/daocha/.ssh/id_rsa_mini"
+INSURE2GO_BASE_IMAGE_NAME="insure2go-base"
+INSURE2GO_BASE_VERSION="latest"
+INSURE2GO_LOG_FOLDER="/media/data/logs"
