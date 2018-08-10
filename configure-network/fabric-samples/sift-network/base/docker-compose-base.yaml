@@ -25,9 +25,10 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric
     command: orderer
     volumes:
-    - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
-    - ../crypto-config/ordererOrganizations/sift.insure/orderers/orderer.sift.insure/msp:/var/hyperledger/orderer/msp
-    - ../crypto-config/ordererOrganizations/sift.insure/orderers/orderer.sift.insure/tls/:/var/hyperledger/orderer/tls
+      - /media/data/blockchain/orderer:/var/hyperledger/production
+      - ../channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+      - ../crypto-config/ordererOrganizations/sift.insure/orderers/orderer.sift.insure/msp:/var/hyperledger/orderer/msp
+      - ../crypto-config/ordererOrganizations/sift.insure/orderers/orderer.sift.insure/tls/:/var/hyperledger/orderer/tls
     ports:
       - 7050:7050
 
@@ -42,6 +43,7 @@ services:
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.sift.insure:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
+        - /media/data/blockchain/peer0.sift.insure:/var/hyperledger/production
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/sift.insure/peers/peer0.sift.insure/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/sift.insure/peers/peer0.sift.insure/tls:/etc/hyperledger/fabric/tls
@@ -61,6 +63,7 @@ services:
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.sift.insure:7051
       - CORE_PEER_LOCALMSPID=Org1MSP
     volumes:
+        - /media/data/blockchain/peer1.sift.insure:/var/hyperledger/production
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/sift.insure/peers/peer1.sift.insure/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/sift.insure/peers/peer1.sift.insure/tls:/etc/hyperledger/fabric/tls
@@ -81,6 +84,7 @@ services:
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.aig.com:7051
       - CORE_PEER_LOCALMSPID=Org2MSP
     volumes:
+        - /media/data/blockchain/peer0.aig.com:/var/hyperledger/production
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/aig.com/peers/peer0.aig.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/aig.com/peers/peer0.aig.com/tls:/etc/hyperledger/fabric/tls
@@ -100,6 +104,7 @@ services:
       - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.aig.com:7051
       - CORE_PEER_LOCALMSPID=Org2MSP
     volumes:
+        - /media/data/blockchain/peer1.aig.com:/var/hyperledger/production
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/aig.com/peers/peer1.aig.com/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/aig.com/peers/peer1.aig.com/tls:/etc/hyperledger/fabric/tls
