@@ -67,7 +67,6 @@ services:
         - /var/run/:/host/var/run/
         - ../crypto-config/peerOrganizations/sift.insure/peers/peer1.sift.insure/msp:/etc/hyperledger/fabric/msp
         - ../crypto-config/peerOrganizations/sift.insure/peers/peer1.sift.insure/tls:/etc/hyperledger/fabric/tls
-
     ports:
       - 8051:7051
       - 8053:7053

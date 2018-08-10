@@ -1,0 +1,83 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '2'
+
+networks:
+  byfn:
+services:
+  ca0:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-sift
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.sift.insure-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/b9c04b3851d790aaa37699ec9299ec0b7545298ac5604947241302f4758ca91c_sk
+    ports:
+      - "7054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.sift.insure-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/b9c04b3851d790aaa37699ec9299ec0b7545298ac5604947241302f4758ca91c_sk -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/sift.insure/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_peerOrg1
+    networks:
+      - byfn
+
+  ca1:
+    image: hyperledger/fabric-ca
+    environment:
+      - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca-aig
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.aig.com-cert.pem
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/095e4657eb6add6eeb17cbb2ec7c5f628d62492a60c55a4e59a63041c8f9f53d_sk
+    ports:
+      - "8054:7054"
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.aig.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/095e4657eb6add6eeb17cbb2ec7c5f628d62492a60c55a4e59a63041c8f9f53d_sk -b admin:adminpw -d'
+    volumes:
+      - ./crypto-config/peerOrganizations/aig.com/ca/:/etc/hyperledger/fabric-ca-server-config
+    container_name: ca_peerOrg2
+    networks:
+      - byfn
+
+  orderer.sift.insure:
+    extends:
+      file:   base/docker-compose-base.yaml
+      service: orderer.sift.insure
+    container_name: orderer.sift.insure
+    networks:
+      - byfn
+
+  peer0.sift.insure:
+    container_name: peer0.sift.insure
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.sift.insure
+    networks:
+      - byfn
+
+  peer1.sift.insure:
+    container_name: peer1.sift.insure
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.sift.insure
+    networks:
+      - byfn
+
+  peer0.aig.com:
+    container_name: peer0.aig.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer0.aig.com
+    networks:
+      - byfn
+
+  peer1.aig.com:
+    container_name: peer1.aig.com
+    extends:
+      file:  base/docker-compose-base.yaml
+      service: peer1.aig.com
+    networks:
+      - byfn
