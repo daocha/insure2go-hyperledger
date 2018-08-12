@@ -15,10 +15,10 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca-sift
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.sift.insure-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/b9c04b3851d790aaa37699ec9299ec0b7545298ac5604947241302f4758ca91c_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/c9e3f3bdf50ea0d6d007528e32e029529edabd6b6727d001e8adc52ff021871b_sk
     ports:
       - "7054:7054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.sift.insure-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/b9c04b3851d790aaa37699ec9299ec0b7545298ac5604947241302f4758ca91c_sk -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.sift.insure-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/c9e3f3bdf50ea0d6d007528e32e029529edabd6b6727d001e8adc52ff021871b_sk -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/sift.insure/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca_peerOrg1
@@ -32,10 +32,10 @@ services:
       - FABRIC_CA_SERVER_CA_NAME=ca-aig
       - FABRIC_CA_SERVER_TLS_ENABLED=true
       - FABRIC_CA_SERVER_TLS_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.aig.com-cert.pem
-      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/095e4657eb6add6eeb17cbb2ec7c5f628d62492a60c55a4e59a63041c8f9f53d_sk
+      - FABRIC_CA_SERVER_TLS_KEYFILE=/etc/hyperledger/fabric-ca-server-config/37c5653b93893e398d6c42eaa51996f08844616bc3fb7ce0c365606b862e9d07_sk
     ports:
       - "8054:7054"
-    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.aig.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/095e4657eb6add6eeb17cbb2ec7c5f628d62492a60c55a4e59a63041c8f9f53d_sk -b admin:adminpw -d'
+    command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/ca.aig.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/37c5653b93893e398d6c42eaa51996f08844616bc3fb7ce0c365606b862e9d07_sk -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/aig.com/ca/:/etc/hyperledger/fabric-ca-server-config
     container_name: ca_peerOrg2
