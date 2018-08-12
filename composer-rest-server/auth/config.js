@@ -7,6 +7,8 @@ module.exports = {
   JWT_TOKEN_EXPIRY: '1d',
   JWT_TOKEN_ALGORITHM: 'HS512',
   JWT_TOKEN_ISSUER: 'sift.insure',
+  COMPOSER_AUTH_DOMAIN: 'https://dev.api.sift.insure',
+  COMPOSER_AUTH_URI: '/chain/auth/jwt/callback',
 
   // 3. Express Server Port
   LISTEN_PORT: process.env.LISTEN_PORT || 3001
