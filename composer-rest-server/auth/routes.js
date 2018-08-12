@@ -40,12 +40,12 @@ function ensureAuthenticated(req, res, next) {
 // 3. Routes
 module.exports = function(app) {
   // 4. Authentication Routes
-  app.post('/auth/login', Auth.login);
+  app.post('/chain/authenticate/login', Auth.login);
   // should manually create user
-  //app.post('/auth/register', Auth.register);
+  //app.post('/chain/authenticate/register', Auth.register);
 
   // to request x-access-token from composer-rest-server
-  app.get('/auth/composer/access_token', async (req, res, next) => {
+  app.get('/chain/authenticate/composer/access_token', async (req, res, next) => {
 
     let token = req.headers.authorization;
     if (token && token.indexOf("Bearer ") != -1) {
