@@ -20,7 +20,8 @@ function generateJWTToken(username, password, callback) {
           }
         } else {
           const token = jwt.sign({
-            "username": user.username
+            "username": user.username,
+            "issuetime": new Date()
           }, config.JWT_TOKEN_SECRET, {
             algorithm: config.JWT_TOKEN_ALGORITHM,
             issuer: config.JWT_TOKEN_ISSUER,
