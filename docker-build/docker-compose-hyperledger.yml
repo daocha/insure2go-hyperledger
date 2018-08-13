@@ -6,7 +6,7 @@ services:
     image: siftledger/composer-rest-server:latest
     build:
       context: ../
-      dockerfile:  ./composer-rest-server/Dockerfile
+      dockerfile:  ./composer-rest-server/docker/Dockerfile
     volumes:
       - "~/.composer:/home/composer/.composer"
     ports:
@@ -15,6 +15,21 @@ services:
     networks:
       - insure2go-network
 
+  composer-rest-server-auth:
+    container_name: siftledger-composer-rest-server-auth
+    image: siftledger/composer-rest-server-auth:latest
+    build:
+      context: ../
+      dockerfile:  ./composer-rest-server/auth/docker/Dockerfile
+    volumes:
+      - "/media/data/composer-rest-server-auth.log:/app/composer-rest-server-auth.log"
+    ports:
+      - "3001:3001"
+    environment:
+      - COMPOSER_AUTH_DOMAIN=http://composer-rest-server
+    restart: always
+    networks:
+      - insure2go-network
 networks:
   insure2go-network:
     driver: bridge

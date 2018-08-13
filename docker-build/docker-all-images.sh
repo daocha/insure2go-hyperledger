@@ -33,7 +33,7 @@ save-all-image() {
     mkdir -p $folder
   fi
 
-  local ids=$(docker images insure2go\/* -aq)
+  local ids=$(docker images siftledger\/* -aq)
   local name safename tag
 
   for id in $ids; do
@@ -57,11 +57,11 @@ load-all-image() {
   fi
   local name safename noextension tag
 
-  for image in $(find . -name \*.dim); do
+  for image in $(find $folder -name \*.dim); do
     echo [DEBUG] load
     tar -Oxf $image repositories
     echo
-    docker load -i "$folder/$image"
+    docker load -i "$image"
   done
 }
 
