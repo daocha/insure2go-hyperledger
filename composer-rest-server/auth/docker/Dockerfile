@@ -25,16 +25,9 @@ WORKDIR /app/auth
 RUN deluser --remove-home node && \
     addgroup -g 1000 composer && \
     adduser -u 1000 -G composer -s /bin/sh -D composer && \
-    npm install && \
-    su -c "npm cache clean --force" - composer && \
+    npm install --production && \
+    npm cache clean --force && \
     rm -rf /home/composer/.config /home/composer/.node-gyp /home/composer/.npm
-
-USER root
-# apply the environment variables
-RUN apk add --no-cache bash
-
-# Run in the composer users home directory.
-WORKDIR /home/composer
 
 # Run as the composer user ID.
 USER composer

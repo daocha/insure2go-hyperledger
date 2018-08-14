@@ -1,0 +1,34 @@
+FROM hyperledger/composer-rest-server:0.19.12
+
+LABEL sift.insure "Ray LI <ray@dcha.xyz>"
+
+COPY ./composer-rest-server/custom-jwt.js /home/composer/app/
+
+# Run in the composer users home directory.
+WORKDIR /home/composer/app
+
+RUN npm install --production passport-jwt loopback-connector-mongodb && \
+    ln -s node_modules .node_modules && \
+    npm cache clean --force 
+
+# change the default root path from / to /chain
+RUN cp /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config.json \
+    /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config-bak.json && \
+    cp /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server.js \
+    /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server-bak.js && \
+    sed 's/"\/api"/"\/chain"/' /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config-bak.json > \
+          /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config.json && \
+    sed 's/\/explorer/\/chain\/explorer/; s/\/auth/\/chain\/auth/' /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server-bak.js > \
+          /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server.js
+
+# Composre required environment variables
+ENV COMPOSER_CARD=ray@sift-network \
+    COMPOSER_NAMESPACES=never \
+    COMPOSER_AUTHENTICATION=true \
+    COMPOSER_MULTIUSER=false \
+    COMPOSER_PROVIDERS='{"jwt":{"provider":"jwt","module":"/home/composer/app/custom-jwt.js","secretOrKey":"2VybmFtZSI6InJheUBkYWSjeUa6ckhB7G4kB8oihlPFTpbkflGIaeFtl82KyO3BVRuv5qiwWUy9jaGEubWUiLCJpYXQiOjE1MzQwODExMTYsImV4cCI6MTUzNDE2NzUxNiwiaXNzIjoic2lmdC5pbnN1cmUi","authScheme":"saml","authPath":"/chain/auth/jwt","callbackPath":"/chain/auth/jwt/callback","successRedirect":"/chain/explorer","failureRedirect":"/chain/error"}}' \
+    COMPOSER_DATASOURCES='{"db":{"name":"db","host":"192.168.88.135","port":"27017","database":"composer_jwt","username":"composer_jwt","password":"composer_jwt","connector":"mongodb"}}' \
+    PATH=/home/composer/.npm-global/bin:$PATH
+
+# Expose port 3000
+EXPOSE 3000

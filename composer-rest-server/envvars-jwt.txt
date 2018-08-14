@@ -5,7 +5,7 @@ COMPOSER_MULTIUSER=false
 COMPOSER_PROVIDERS='{
   "jwt": {
     "provider": "jwt",
-    "module": "/app/custom-jwt.js",
+    "module": "/home/composer/app/custom-jwt.js",
     "secretOrKey": "2VybmFtZSI6InJheUBkYWSjeUa6ckhB7G4kB8oihlPFTpbkflGIaeFtl82KyO3BVRuv5qiwWUy9jaGEubWUiLCJpYXQiOjE1MzQwODExMTYsImV4cCI6MTUzNDE2NzUxNiwiaXNzIjoic2lmdC5pbnN1cmUi",
     "authScheme": "saml",
     "authPath": "/chain/auth/jwt",

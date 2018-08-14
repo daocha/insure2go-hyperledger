@@ -78,6 +78,7 @@ function requestAccessToken(token, callback) {
       callback({access_token: accessToken});
     }
   }).catch(function(err) { // catch error
+    console.error(err);
     if (typeof callback != "undefined") {
       callback({"error": errorMsg});
     } else {
@@ -96,7 +97,7 @@ exports.login = function(req, res) {
       return res.json(result);
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return res.status(400).json({"error": e});
   }
 };
@@ -115,7 +116,7 @@ exports.register = function(req, res) {
       }
     }));
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return res.status(400).json({"error": e});
   }
 };
@@ -146,7 +147,7 @@ exports.auth_access_token = function(req, res) {
       });
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     return res.status(400).json({"error": e});
   }
 };

@@ -68,7 +68,7 @@
     },
     "orderers": {
         "orderer.sift.insure": {
-            "url": "grpcs://localhost:7050",
+            "url": "grpcs://test.fabric.sift.insure:7050",
             "grpcOptions": {
                 "ssl-target-name-override": "orderer.sift.insure"
             },
@@ -79,8 +79,8 @@
     },
     "peers": {
         "peer0.sift.insure": {
-            "url": "grpcs://localhost:7051",
-            "eventUrl": "grpc://localhost:7053",
+            "url": "grpcs://test.fabric.sift.insure:7051",
+            "eventUrl": "grpc://test.fabric.sift.insure:7053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer0.sift.insure"
             },
@@ -89,8 +89,8 @@
             }
         },
         "peer1.sift.insure": {
-            "url": "grpcs://localhost:8051",
-            "eventUrl": "grpc://localhost:8053",
+            "url": "grpcs://test.fabric.sift.insure:8051",
+            "eventUrl": "grpc://test.fabric.sift.insure:8053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer1.sift.insure"
             },
@@ -99,8 +99,8 @@
             }
         },
         "peer0.aig.com": {
-            "url": "grpcs://localhost:9051",
-            "eventUrl": "grpc://localhost:9053",
+            "url": "grpcs://test.fabric.sift.insure:9051",
+            "eventUrl": "grpc://test.fabric.sift.insure:9053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer0.aig.com"
             },
@@ -109,8 +109,8 @@
             }
         },
         "peer1.aig.com": {
-            "url": "grpcs://localhost:10051",
-            "eventUrl": "grpc://localhost:10053",
+            "url": "grpcs://test.fabric.sift.insure:10051",
+            "eventUrl": "grpc://test.fabric.sift.insure:10053",
             "grpcOptions": {
                 "ssl-target-name-override": "peer1.aig.com"
             },
@@ -121,14 +121,14 @@
     },
     "certificateAuthorities": {
         "ca.sift.insure": {
-            "url": "https://localhost:7054",
+            "url": "https://test.fabric.sift.insure:7054",
             "caName": "ca-sift",
             "httpOptions": {
                 "verify": false
             }
         },
         "ca.aig.com": {
-            "url": "https://localhost:8054",
+            "url": "https://test.fabric.sift.insure:8054",
             "caName": "ca-aig",
             "httpOptions": {
                 "verify": false
