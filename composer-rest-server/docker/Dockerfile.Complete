@@ -20,7 +20,7 @@ ENV NPM_CONFIG_LOGLEVEL warn
 # Install the latest version by default.
 ARG VERSION=0.19.12
 
-COPY ./composer-rest-server/custom-jwt.js /home/composer/app/
+COPY ./custom-jwt.js /home/composer/app/
 
 # Run in the composer users home directory.
 WORKDIR /home/composer/app
@@ -33,7 +33,7 @@ RUN deluser --remove-home node && \
     su -c "npm config set prefix '/home/composer/.npm-global'" - composer && \
     su -c "npm install --production -g pm2 composer-rest-server@${VERSION}" - composer && \
     su -c "npm install --production passport-jwt loopback-connector-mongodb" - composer && \
-    ln -s node_modules .node_modules && \
+    ln -s /home/composer/node_modules /home/composer/.node_modules && \
     su -c "npm cache clean --force" - composer && \
     rm -rf /home/composer/.config /home/composer/.node-gyp /home/composer/.npm && \
     apk del make gcc g++ python git

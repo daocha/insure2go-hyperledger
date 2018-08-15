@@ -6,7 +6,7 @@ services:
     image: siftledger/composer-rest-server:latest
     build:
       context: ../
-      dockerfile:  ./composer-rest-server/docker/Dockerfile
+      dockerfile:  ./docker/Dockerfile
     volumes:
       - "~/.composer:/home/composer/.composer"
     ports:
@@ -20,7 +20,7 @@ services:
     image: siftledger/composer-rest-server-auth:latest
     build:
       context: ../
-      dockerfile:  ./composer-rest-server/auth/docker/Dockerfile
+      dockerfile:  ./auth/docker/Dockerfile
     volumes:
       - "/media/data/composer-rest-server-auth.log:/app/composer-rest-server-auth.log"
     ports:

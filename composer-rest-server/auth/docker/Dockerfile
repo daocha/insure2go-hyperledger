@@ -17,7 +17,7 @@ LABEL sift.insure "Ray LI <ray@dcha.xyz>"
 # Reset npm logging to default level.
 ENV NPM_CONFIG_LOGLEVEL warn
 
-COPY ./composer-rest-server/auth /app/auth
+COPY ./auth /app/auth
 
 WORKDIR /app/auth
 
