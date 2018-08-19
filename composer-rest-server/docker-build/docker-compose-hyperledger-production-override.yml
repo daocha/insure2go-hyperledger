@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  composer-rest-server:
+    environment:
+      - INSURE2GO_SERVER=PROD
+
+  composer-rest-server-auth:
+    environment:
+      - INSURE2GO_SERVER=PROD
