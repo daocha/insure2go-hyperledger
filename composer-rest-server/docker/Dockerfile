@@ -60,8 +60,6 @@ ENV COMPOSER_CARD=ray@sift-network \
     #COMPOSER_DATASOURCES='{"db":{"name":"db","host":"192.168.88.135","port":"27017","database":"composer_jwt","username":"composer_jwt","password":"composer_jwt","connector":"mongodb"}}' \
     PATH=/home/composer/.npm-global/bin:$PATH
 
-#CMD node init_env.js && sleep 5
-
 # Run supervisor to start the application.
 CMD node init_env.js && sleep 5 && pm2-docker composer-rest-server
 
