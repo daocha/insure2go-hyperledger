@@ -38,15 +38,19 @@ RUN deluser --remove-home node && \
     rm -rf /home/composer/.config /home/composer/.node-gyp /home/composer/.npm && \
     apk del make gcc g++ python git
 
-# change the default root path from / to /chain
+# change the default root path from / to /chain && set ttl to 1 day (86400 seconds)
 RUN cp /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config.json \
     /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config-bak.json && \
     cp /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server.js \
     /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server-bak.js && \
+    cp /home/composer/.npm-global/lib/node_modules/composer-rest-server/common/models/user.json \
+    /home/composer/.npm-global/lib/node_modules/composer-rest-server/common/models/user-bak.json && \
     sed 's/"\/api"/"\/chain"/' /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config-bak.json > \
           /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/config.json && \
     sed 's/\/explorer/\/chain\/explorer/; s/\/auth/\/chain\/auth/' /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server-bak.js > \
-          /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server.js
+          /home/composer/.npm-global/lib/node_modules/composer-rest-server/server/server.js && \
+    sed 's/\"properties\":/\"ttl\": 86400\,\n    \"properties\":/' /home/composer/.npm-global/lib/node_modules/composer-rest-server/common/models/user-bak.json > \
+          /home/composer/.npm-global/lib/node_modules/composer-rest-server/common/models/user.json
 
 # Run as the composer user ID.
 USER composer
