@@ -30,6 +30,7 @@ async function loadFromKMS(){
 }
 
 function setup(){
+  // Production
   if(typeof KMS_CONFIG != "undefined"){
     console.log("Exporting variables with values from ***KMS***...");
     config = {
@@ -48,13 +49,15 @@ function setup(){
       JWT_TOKEN_ISSUER: process.env.JWT_TOKEN_ISSUER || 'sift.insure',
 
       // Composer external
-      COMPOSER_AUTH_DOMAIN: process.env.COMPOSER_AUTH_DOMAIN || 'https://dev.api.sift.insure',
+      COMPOSER_AUTH_DOMAIN: process.env.COMPOSER_AUTH_DOMAIN || 'https://api.sift.insure',
       COMPOSER_AUTH_URI: process.env.COMPOSER_AUTH_URI || '/chain/auth/jwt/callback',
 
       // Express Server Port
       LISTEN_PORT: process.env.LISTEN_PORT || 3001
     };
-  }else{
+  }
+  // Development
+  else{
     console.log("Exporting variables with DEVELOPMENT values...");
     config = {
       // MongoDB
