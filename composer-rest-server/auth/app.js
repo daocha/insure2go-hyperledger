@@ -8,7 +8,7 @@ var logger = require('morgan');
 // Include Configuration
 var config_initialize = require('./config');
 
-config_initialize(function(config){
+config_initialize((config) => {
   // Connect to MongoDB
   mongoose.connect(config.MONGO_URI);
   mongoose.connection.on('error', function(err) {
@@ -25,7 +25,7 @@ config_initialize(function(config){
   // Load app routes
   require('./routes')(app);
 
-  app.listen(config.LISTEN_PORT, function(){
+  app.listen(config.LISTEN_PORT, () => {
       console.log('listening on port ' + config.LISTEN_PORT);
   });
 });
