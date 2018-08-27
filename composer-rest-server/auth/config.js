@@ -1,5 +1,5 @@
 const request = require('request-promise');
-const KMS_URL =  process.env.INSURE2GO_KMS_URL || 'http://kms:5000/kms/load';
+const KMS_URL =  process.env.INSURE2GO_KMS_URL || 'http://kms:5000/kms/load/composer';
 let config, loading_callback;
 if(process.env.INSURE2GO_SERVER == 'PROD'){
   // Load configuration from KMS
@@ -36,14 +36,14 @@ function setup(){
     config = {
       // MongoDB
       MONGO_URI: process.env.MONGO_URI || 'mongodb://' +
-      KMS_CONFIG['ComposerRestServer']['Mongo']['username_composer'] + ':' +
-      KMS_CONFIG['ComposerRestServer']['Mongo']['password_composer'] + '@' +
-      KMS_CONFIG['ComposerRestServer']['Mongo']['db_host_composer'] + ':' +
-      KMS_CONFIG['ComposerRestServer']['Mongo']['db_port_composer'] + '/' +
-      KMS_CONFIG['ComposerRestServer']['Mongo']['db_name_composer'],
+      KMS_CONFIG['Mongo']['username_composer'] + ':' +
+      KMS_CONFIG['Mongo']['password_composer'] + '@' +
+      KMS_CONFIG['Mongo']['db_host_composer'] + ':' +
+      KMS_CONFIG['Mongo']['db_port_composer'] + '/' +
+      KMS_CONFIG['Mongo']['db_name_composer'],
 
       // JWT
-      JWT_TOKEN_SECRET: process.env.JWT_TOKEN_SECRET || KMS_CONFIG['ComposerRestServer']['JWT_SECRET_KEY'],
+      JWT_TOKEN_SECRET: process.env.JWT_TOKEN_SECRET || KMS_CONFIG['JWT_SECRET_KEY'],
       JWT_TOKEN_EXPIRY: process.env.JWT_TOKEN_EXPIRY || '1d',
       JWT_TOKEN_ALGORITHM: process.env.JWT_TOKEN_ALGORITHM || 'HS512',
       JWT_TOKEN_ISSUER: process.env.JWT_TOKEN_ISSUER || 'sift.insure',
