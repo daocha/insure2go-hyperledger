@@ -1,0 +1,2 @@
+INSURE2GO_REMOTE_SERVER="daocha@mini"
+INSURE2GO_REMOTE_SERVER_RSA_KEY="/home/daocha/.ssh/id_rsa_mini"

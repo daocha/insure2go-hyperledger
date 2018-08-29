@@ -60,8 +60,6 @@ ENV COMPOSER_CARD=ray@sift-network \
     COMPOSER_NAMESPACES=never \
     COMPOSER_AUTHENTICATION=true \
     COMPOSER_MULTIUSER=false \
-    #COMPOSER_PROVIDERS='{"jwt":{"provider":"jwt","module":"/home/composer/app/custom-jwt.js","secretOrKey":"2VybmFtZSI6InJheUBkYWSjeUa6ckhB7G4kB8oihlPFTpbkflGIaeFtl82KyO3BVRuv5qiwWUy9jaGEubWUiLCJpYXQiOjE1MzQwODExMTYsImV4cCI6MTUzNDE2NzUxNiwiaXNzIjoic2lmdC5pbnN1cmUi","authScheme":"saml","authPath":"/chain/auth/jwt","callbackPath":"/chain/auth/jwt/callback","successRedirect":"/chain/explorer","failureRedirect":"/chain/error"}}' \
-    #COMPOSER_DATASOURCES='{"db":{"name":"db","host":"192.168.88.135","port":"27017","database":"composer_jwt","username":"composer_jwt","password":"composer_jwt","connector":"mongodb"}}' \
     PATH=/home/composer/.npm-global/bin:$PATH
 
 # Run supervisor to start the application.
