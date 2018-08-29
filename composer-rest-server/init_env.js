@@ -28,7 +28,7 @@ function setup(){
       "jwt": {
         "provider": "jwt",
         "module": "/home/composer/app/custom-jwt.js",
-        "secretOrKey": KMS_CONFIG['ComposerRestServer']['JWT_SECRET_KEY'],
+        "secretOrKey": KMS_CONFIG['JWT_SECRET_KEY'],
         "authScheme": "saml",
         "authPath": "/chain/auth/jwt",
         "callbackPath": "/chain/auth/jwt/callback",
@@ -39,11 +39,11 @@ function setup(){
     COMPOSER_DATASOURCES = {
       "db": {
         "name": "db",
-        "host": KMS_CONFIG['ComposerRestServer']['Mongo']['db_host_composer'],
-        "port": KMS_CONFIG['ComposerRestServer']['Mongo']['db_port_composer'],
-        "database": KMS_CONFIG['ComposerRestServer']['Mongo']['db_name_composer'],
-        "username": KMS_CONFIG['ComposerRestServer']['Mongo']['username_composer'],
-        "password": KMS_CONFIG['ComposerRestServer']['Mongo']['password_composer'],
+        "host": KMS_CONFIG['Mongo']['db_host_composer'],
+        "port": KMS_CONFIG['Mongo']['db_port_composer'],
+        "database": KMS_CONFIG['Mongo']['db_name_composer'],
+        "username": KMS_CONFIG['Mongo']['username_composer'],
+        "password": KMS_CONFIG['Mongo']['password_composer'],
         "connector": "mongodb"
       }
     };
