@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/user.js');
-const config = require('../config');
-const request = require('request-promise');
+const jwt = require('jsonwebtoken'),
+      User = require('../models/user.js'),
+      config = require('../config'),
+      request = require('request-promise');
 
 // generate JWT token
 function generateJWTToken(username, password, callback) {

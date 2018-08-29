@@ -1,12 +1,12 @@
 // Include Packages
-var express = require("express");
-var bodyParser = require('body-parser');
-var mongoose = require("mongoose");
-var cors = require("cors");
-var logger = require('morgan');
+const express = require("express"),
+      bodyParser = require('body-parser'),
+      mongoose = require("mongoose"),
+      cors = require("cors"),
+      logger = require('morgan');
 
 // Include Configuration
-var config_initialize = require('./config');
+const config_initialize = require('./config');
 
 config_initialize((config) => {
   // Connect to MongoDB
@@ -16,7 +16,7 @@ config_initialize((config) => {
   });
 
   // Initialize the application
-  var app = express();
+  let app = express();
   app.use(cors());
   app.use(logger('dev'));
   app.use(bodyParser.json());
