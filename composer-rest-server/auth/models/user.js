@@ -1,10 +1,10 @@
 // 1. Include required modules
-var mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
   Schema = mongoose.Schema,
   bcrypt = require('bcryptjs');
 
 // 2. Define the MongoDB schema for the people collection
-var userSchema = new Schema({
+const userSchema = new Schema({
   username: {
     type: String,
     unique: true,
@@ -19,7 +19,7 @@ var userSchema = new Schema({
 
 // 4. Encypt and store the user's password
 userSchema.pre('save', function(next) {
-  var user = this;
+  let user = this;
   if (!user.isModified('password')) {
     return next();
   }

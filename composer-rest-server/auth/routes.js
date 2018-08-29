@@ -11,9 +11,9 @@ function ensureAuthenticated(req, res, next) {
   if (!req.headers.authorization) {
     return res.status(401).send({ error: 'TokenMissing' });
   }
-  var token = req.headers.authorization.split(' ')[1];
+  let token = req.headers.authorization.split(' ')[1];
 
-  var payload = null;
+  let payload = null;
   try {
     payload = jwt.decode(token, config.TOKEN_SECRET);
   }
