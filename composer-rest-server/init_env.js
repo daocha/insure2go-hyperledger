@@ -1,5 +1,5 @@
 const request = require('request-promise');
-const KMS_URL =  process.env.INSURE2GO_KMS_URL || 'http://kms:5000/kms/load';
+const KMS_URL =  process.env.INSURE2GO_KMS_URL || 'http://kms:5000/kms/load/composer';
 if(process.env.INSURE2GO_SERVER == 'PROD'){
   // Load configuration from KMS
   console.log("Loading configuration from KMS: " + KMS_URL);

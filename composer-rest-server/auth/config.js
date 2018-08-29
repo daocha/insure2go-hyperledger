@@ -49,7 +49,7 @@ function setup(){
       JWT_TOKEN_ISSUER: process.env.JWT_TOKEN_ISSUER || 'sift.insure',
 
       // Composer external
-      COMPOSER_AUTH_DOMAIN: process.env.COMPOSER_AUTH_DOMAIN || 'https://api.sift.insure',
+      COMPOSER_AUTH_DOMAIN: process.env.COMPOSER_AUTH_DOMAIN || 'https://dev.api.sift.insure',
       COMPOSER_AUTH_URI: process.env.COMPOSER_AUTH_URI || '/chain/auth/jwt/callback',
 
       // Express Server Port
