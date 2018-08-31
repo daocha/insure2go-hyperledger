@@ -25,6 +25,9 @@ COPY ["./custom-jwt.js", "./init_env.js", "./package.json", "/home/composer/app/
 # Run in the composer users home directory.
 WORKDIR /home/composer/app
 
+# update npm
+RUN npm i npm@latest -g
+
 # Need to install extra dependencies for native modules.
 RUN deluser --remove-home node && \
     addgroup -g 1000 composer && \

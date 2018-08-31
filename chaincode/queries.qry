@@ -1,0 +1,46 @@
+/** query on the fabrics */
+
+/** --------------------
+    Filter Assets
+    --------------------
+    */
+
+query selectAllClaimablePolicies {
+  description: "Select all claimable policies."
+  statement:
+    SELECT org.sift.insure.network.FlightDelayPolicy
+      WHERE(status == "CLAIMABLE")
+}
+
+query selectActivePolicies {
+  description: "Select all expired policies."
+  statement:
+    SELECT org.sift.insure.network.FlightDelayPolicy
+      WHERE(status == "ACTIVE" AND endDate < _$endTime)
+}
+
+query selectFlightDelayCompensations {
+  description: "Select flight delay compensations."
+  statement:
+    SELECT org.sift.insure.network.FlightDelayCompensation
+      WHERE(policy == _$policy)
+}
+
+/** --------------------
+    Filter Transactions
+    --------------------
+    */
+
+query selectRelatedTransactionsClaimFlightDelay {
+  description: "Select all ClaimFlightDelay related Transactions."
+  statement:
+    SELECT org.sift.insure.network.ClaimFlightDelay
+      WHERE(policy == _$policy)
+}
+
+query selectRelatedTransactionsUpdateFlightStatus {
+  description: "Select all UpdateFlightStatus related Transactions."
+  statement:
+    SELECT org.sift.insure.network.UpdateFlightStatus
+      WHERE(policy == _$policy)
+}

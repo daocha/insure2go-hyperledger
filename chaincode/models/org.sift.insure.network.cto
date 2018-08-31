@@ -32,7 +32,7 @@ asset Insurer identified by isurerId {
   o String isurerName
 }
 
-/** status enumerations */
+/** policy status */
 enum PolicyStatus {
   o ACTIVE
   o SUSPENDED
@@ -41,10 +41,19 @@ enum PolicyStatus {
   o CLAIMABLE
 }
 
+/** claim status */
+enum ClaimStatus {
+  o PENDING
+  o PROCESSING
+  o COMPLETED
+  o REJECTED
+  o CANCELLED
+}
+
 /** Policy details */
 abstract asset Policy identified by policyID {
   o String policyID
-  o String policyDesc
+  o String policyDesc optional
   o DateTime startDate
   o DateTime endDate
   o PolicyStatus status
@@ -58,6 +67,20 @@ asset FlightDelayPolicy extends Policy{
   o String flightNo
   o DateTime scheduledDepartureTimestamp
   o DateTime actualDepartureTimestamp optional
+}
+
+/** Compensation details */
+abstract asset Compensation identified by compensationID{
+  o String compensationID
+  o String compensationDesc optional
+  o String comment optional
+  o ClaimStatus status
+}
+
+asset FlightDelayCompensation extends Compensation {
+  --> FlightDelayPolicy policy
+  o DateTime requestTimestmap
+  o DateTime paidTimestamp optional
 }
 
 /** Flight Delay Policy */
@@ -76,8 +99,9 @@ participant Person identified by identityID {
 }
 
 /** transaction: claim process */
-transaction Claim {
-	o String policyID
+transaction ClaimFlightDelay {
+  --> FlightDelayPolicy policy
+  o String comment
 }
 
 /** transaction: transfer a policy */

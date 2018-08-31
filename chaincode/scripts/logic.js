@@ -19,25 +19,40 @@
 
 /**
  * Track the trade of a Policy transferred from one person to another person
- * @param {org.sift.insure.network.Transfer} transfer - the trade to be processed
+ * @param {org.sift.insure.network.Transfer} transfer - the transfer to be processed
  * @transaction
  */
 async function transferPolicy(transfer) {
-    transfer.policy.holder = transfer.holder;
-    transfer.policy.beneficiary = transfer.beneficiary;
-    let assetRegistry = await getAssetRegistry('org.sift.insure.network.Policy');
-    await assetRegistry.update(transfer.policy);
+  transfer.policy.holder = transfer.holder;
+  transfer.policy.beneficiary = transfer.beneficiary;
+  let assetRegistry = await getAssetRegistry('org.sift.insure.network.Policy');
+  await assetRegistry.update(transfer.policy);
 }
-
 
 /**
  * Track the trade of a FlightDelayPolicy Update
- * @param {org.sift.insure.network.UpdateFlightStatus} update - the trade to be processed
+ * @param {org.sift.insure.network.UpdateFlightStatus} update - the fields to be update
  * @transaction
  */
 async function updateFlightStatus(update) {
-    update.policy.actualDepartureTimestamp = update.actualDepartureTimestamp;
-    update.policy.status = update.updatedStatus;
-    let assetRegistry = await getAssetRegistry('org.sift.insure.network.FlightDelayPolicy');
-    await assetRegistry.update(update.policy);
+  update.policy.actualDepartureTimestamp = update.actualDepartureTimestamp;
+  update.policy.status = update.updatedStatus;
+  let assetRegistry = await getAssetRegistry('org.sift.insure.network.FlightDelayPolicy');
+  await assetRegistry.update(update.policy);
+}
+
+/** Submit claim request for flight delay
+ * @param {org.sift.insure.network.ClaimFlightDelay} claim - the claim to be processed
+ * @transaction
+ */
+async function claimFlightDelay(claim) {
+  let factory = getFactory();
+  let compensationId = 'COMP_' + claim.transactionId;
+  let compensation = factory.newResource('org.sift.insure.network', 'FlightDelayCompensation', compensationId);
+  compensation.policy = claim.policy;
+  compensation.requestTimestmap = claim.timestamp;
+  compensation.status = "PENDING";
+  compensation.comment = claim.comment;
+  let assetRegistry = await getAssetRegistry('org.sift.insure.network.FlightDelayCompensation');
+  await assetRegistry.add(compensation);
 }
