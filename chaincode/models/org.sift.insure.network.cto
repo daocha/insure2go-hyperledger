@@ -66,6 +66,7 @@ abstract asset Policy identified by policyID {
 asset FlightDelayPolicy extends Policy{
   o String flightNo
   o DateTime scheduledDepartureTimestamp
+  o Integer claimableDelayHours
   o DateTime actualDepartureTimestamp optional
 }
 

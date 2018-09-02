@@ -10,6 +10,7 @@ query selectAllClaimablePolicies {
   statement:
     SELECT org.sift.insure.network.FlightDelayPolicy
       WHERE(status == "CLAIMABLE")
+      ORDER BY endDate ASC
 }
 
 query selectActivePolicies {
@@ -17,6 +18,7 @@ query selectActivePolicies {
   statement:
     SELECT org.sift.insure.network.FlightDelayPolicy
       WHERE(status == "ACTIVE" AND endDate < _$endTime)
+        ORDER BY endDate ASC
 }
 
 query selectFlightDelayCompensations {
@@ -24,6 +26,7 @@ query selectFlightDelayCompensations {
   statement:
     SELECT org.sift.insure.network.FlightDelayCompensation
       WHERE(policy == _$policy)
+      ORDER BY [status ASC, requestTimestmap ASC]
 }
 
 /** --------------------
@@ -36,6 +39,7 @@ query selectRelatedTransactionsClaimFlightDelay {
   statement:
     SELECT org.sift.insure.network.ClaimFlightDelay
       WHERE(policy == _$policy)
+      ORDER BY timestamp DESC
 }
 
 query selectRelatedTransactionsUpdateFlightStatus {
@@ -43,4 +47,5 @@ query selectRelatedTransactionsUpdateFlightStatus {
   statement:
     SELECT org.sift.insure.network.UpdateFlightStatus
       WHERE(policy == _$policy)
+      ORDER BY timestamp DESC
 }
