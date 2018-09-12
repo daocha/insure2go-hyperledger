@@ -3,7 +3,7 @@
     "composer": "^0.19.12"
   },
   "name": "sift-network",
-  "version": "0.0.11k",
+  "version": "0.0.11m",
   "description": "Sift demo network",
   "scripts": {
     "prepublish": "mkdirp ./dist && composer archive create --sourceType dir --sourceName . -a ./dist/sift-network.bna",
